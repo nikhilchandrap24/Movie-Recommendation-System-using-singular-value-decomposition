@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block main %}
+<section id="hero">
+    <div class="hero-container">
+
+        <h1>My Films</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>
+                        <a type="button" href="{% url 'deleteAll' %}">Delete All</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie_rating in all_rating %}
+
+                <tr>
+                    <td>{{ movie_rating.title }}</td>
+                    <td name = 'rating' >{{ movie_rating.rating }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">You have no films in your list.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form method="post" action="{% url 'recommendations'%}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Recommend Movies</button>
+        </form>
+    </div>
+</section>
+
+
+{% endblock main %}

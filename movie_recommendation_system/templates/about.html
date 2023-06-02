@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block main %}
+<section id="hero">
+    <div class="hero-container">
+        <h1>About</h1>
+        <h2 style="text-align:justify; padding:40px; size: 10px;">
+            Collaborative filtering is a popular technique used in recommender systems to provide personalized recommendations to users. However, collaborative filtering suffers from data sparsity, scalability, and cold start problems. Data sparsity occurs when the user-item matrix is sparse, and most users have rated only a small fraction of items. Scalability is a concern when the size of the user-item matrix grows, making it difficult to perform computations efficiently. The cold start problem arises when a new user or item enters the system, and there is not enough data to generate accurate recommendations.
+To address these challenges, we built a single model that employs singular value decomposition to resolve all three issues. The proposed method decomposes the user-item matrix into a low-dimensional latent space, which captures the underlying semantic structure of the data. The latent space is used to represent users and items, and recommendations are generated based on the similarity between the latent representations of users and items. The proposed approach improves scalability by reducing the dimensionality of the data, making it easier to perform computations efficiently. Additionally, it mitigates data sparsity by capturing the latent factors that influence user-item interactions, even when there is limited data available. The proposed approach also addresses the cold start problem by leveraging the latent space representation. For new users, the method employees a popularity-based method to recommend high rated movies. Overall, the results of our work showed better results as compared to other SVD model recommendation systems.
+
+        </h2>
+
+    </div>
+</section>
+{% endblock main %}

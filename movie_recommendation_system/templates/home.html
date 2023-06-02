@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Movie Recommendation System</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/static/styles.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="navbar">
+
+      <h1 class="logo"><a href="{% url 'home'%}">Movie Recommendation System</a></h1>
+
+
+      <div class="navbarLinks">
+        <ul>
+          <li><a class="nav-link scrollto" href="{% url 'home'%}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'about'%}">About</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'search' %}">Rate Movies</a></li>
+          
+          <li><a class="nav-link scrollto" href="{% url 'recommendations' %}">Recommend</a></li>
+          
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </div><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  {% block main %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <h3> <strong>Welcome !</strong></h3>
+      <h1>We recommend movies to users</h1>
+      <h2>Our objective is to create a recommendation system which solves data sparsity, scalability and cold start problems</h2>
+      <a href="{% url 'search'%}" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+
+
+  
+  {% endblock main %}
+</body>
+
+</html>

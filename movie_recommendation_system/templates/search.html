@@ -1,0 +1,94 @@
+{% extends 'home.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css" />
+{% block main %}
+<section id="hero">
+    <div class="hero-container">
+        <h1>Search for a movie</h1>
+        <div class="searchClass">
+            <form action="{% url 'addMovie' %}" method="post">
+                {% csrf_token %}
+                <input type="text" list="movies" name='movie_title' placeholder="Search" class="inputClass">
+                <datalist id="movies">
+                    {% for movie in movies %}
+                    <option value="{{movie.title}}"></option>
+                    {% endfor %}
+                </datalist>
+                <select name="rating" class="rating" >
+                    <option value="Rate Movie">Rate Movie</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button type="submit" id="addBtn" name="rateMovie">+</button>
+            </form>
+        </div>
+        <h2 style="margin-top: 10px; font-size: 32px; color:white">My Films</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>
+                        <a type="button" href="{% url 'deleteAll' %}">Delete All</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie_rating in all_ratings %}
+                <tr>
+                    <td>{{ movie_rating.title }}</td>
+                    <td>{{ movie_rating.rating }}</td>
+                    <td>
+                        <a type="button" href="{% url 'delete' movie_rating.title %}">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" >You have no films in your list.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form method="post" action="{% url 'recommendations'%}">
+            {% csrf_token %}
+            <button type="submit" class="btn-get-started scrollto">Recommend Movies</button>
+        </form>
+    </div>
+
+    
+</section>
+
+
+
+{% endblock main %}
+<!-- <div id="autocomplete" class="autocomplete searchClass">
+            <input class="autocomplete-input inputClass" placeholder="Search" />
+            <ul class="autocomplete-result-list"></ul>
+        </div>
+
+        <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+
+        <script>
+            new Autocomplete('#autocomplete',{
+                search : input => {
+                    console.log(input)
+                    const url =`/search/movie=${input}`
+                    return new Promise(resolve => {
+                        fetch(url)
+                        .then(response => reponse.json())
+                        .then(data => {
+                            console.log(data)
+                            resolve(data.data)
+                        })
+                    })
+                },
+                onSubmit : result => {
+                    console.log(result)
+                    window.open(``)
+                }
+            })
+        </script> -->
